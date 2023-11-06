@@ -1,0 +1,5 @@
+This is a test file for string replacement.
+Replace the word "apple" with "banana".
+Apples are delicious. I like apples.
+This file contains multiple occurrences of "apple".
+End of the test file.
