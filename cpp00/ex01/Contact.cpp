@@ -1,95 +1,68 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Contact.cpp                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: cgross <marvin@42lausanne.ch>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/25 17:17:05 by cgross            #+#    #+#             */
-/*   Updated: 2023/10/10 12:46:26 by cgross           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "Contact.hpp"
- 
-Contact::Contact(void) : index(0)
-{
-//constructor 
-}
- 
- 
-Contact::~Contact(void)
-{
-//destructor 
+
+Contact::Contact(void) : index(0) {
+    //constructor;
 }
 
-std::string	Contact::getFName(int maxSize) const
-{
-	if (maxSize == 10 && _FName.size() >= 10)
-		return _FName.substr(0, 9) + ".";
-	return _FName;
+Contact::~Contact(void) {
+    //destructor;
 }
 
-std::string	Contact::getLName(int maxSize) const
-{
-	if (maxSize == 10 && _LName.size() > 10)
-		return _LName.substr(0, 9) + ".";
-	return _FName;
+int     Contact::getIndex(void) const {
+    return index;
 }
 
-std::string	Contact::getNName(int maxSize) const
-{
-	if (maxSize == 10 && _NName.size() > 10)
-		return _NName.substr(0, 9) + ".";
-	return _NName;
+std::string Contact::getFName(int maxSize) const {
+    if (maxSize == 10 && _fname.size() >= 10)
+        return _fname.substr(0, 9) + ".";
+    return _fname;
 }
 
-std::string Contact::getPhone(void) const
-{
-	return _Phone;
+std::string Contact::getLName(int maxSize) const {
+    if (maxSize == 10 && _lname.size() >= 10)
+        return _lname.substr(0, 9) + ".";
+    return _lname;
 }
 
-std::string Contact::getSecret(void) const
-{
-	return _Secret;
+std::string Contact::getNName(int maxSize) const {
+    if (maxSize == 10 && _nname.size() >= 10)
+        return _nname.substr(0, 9) + ".";
+    return _nname;
 }
 
-void	Contact::setFName(std::string info)
-{
-	_FName = info;
+std::string Contact::getPhone(void) const {
+    return _phone;
 }
 
-void	Contact::setLName(std::string info)
-{
-	_LName = info;
+std::string Contact::getSecret(void) const {
+    return _secret;
 }
 
-void	Contact::setNName(std::string info)
-{
-	_NName = info;
+void    Contact::setFName(std::string info) {
+    _fname = info;
 }
 
-void	Contact::setPhone(std::string info)
-{
-	_Phone = info;
+void    Contact::setLName(std::string info) {
+    _lname = info;
 }
 
-
-void	Contact::setSecret(std::string info)
-{
-	_Secret = info;
+void    Contact::setNName(std::string info) {
+    _nname = info;
 }
 
-int		Contact::getIndex(void) const
-{
-	return index;
+void    Contact::setPhone(std::string info) {
+    _phone = info;
 }
 
-void	Contact::printInfo(void) const
-{
-	std::cout << getFName(0) << std::endl;
-	std::cout << getLName(0) << std::endl;
-	std::cout << getNName(0) << std::endl;
-	std::cout << getPhone() << std::endl;
-	std::cout << getSecret() << std::endl;
+void    Contact::setSecret(std::string info) {
+    _secret = info;
+}
+
+void    Contact::printInfo(void) const {
+    std::cout << "_____________________________________" << std::endl << std::endl;
+    std::cout << "first name:   " << getFName(0) << std::endl;
+    std::cout << "last name:    " << getLName(0) << std::endl;
+    std::cout << "nickname:     " << getNName(0) << std::endl;
+    std::cout << "phone number: " << getPhone() << std::endl;
+    std::cout << "secret:       " << getSecret() << std::endl;
 }
