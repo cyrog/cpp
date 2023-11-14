@@ -92,6 +92,7 @@ void    PhoneBook::search() {
             std::cerr << "error: ";
             std::cout << "pick an index between 1 and 8:" << std::endl;
             i = 0;
+			continue;
         }
         if (_Contact[i - 1].getIndex() > 0 && _Contact[i - 1].getIndex() < 9) {
             std::cout << "  ------------------------------------------ " << std::endl;
