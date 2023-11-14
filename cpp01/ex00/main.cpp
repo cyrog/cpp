@@ -1,17 +1,17 @@
 #include "Zombie.hpp"
 
-int	main(void) {
-	Zombie	first;
-	Zombie	second("Bob 2lan");
-	Zombie	*third = newZombie("Rob 3");
-
+int	main() {
+	Zombie first;
 	first.announce();
-	second.announce();
-	third->announce();
 
-	randomChump("zChump");
+	Zombie *bobby = newZombie("Bobby");
 
-	delete third;
+	//newZombie("bob")->announce();
+	bobby->announce();
+	randomChump("chump");
+
+
+	delete bobby;
 	return (0);
 
 }
