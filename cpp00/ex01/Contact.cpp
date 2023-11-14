@@ -59,7 +59,6 @@ void    Contact::setSecret(std::string info) {
 }
 
 void    Contact::printInfo(void) const {
-    std::cout << "_____________________________________" << std::endl << std::endl;
     std::cout << "first name:   " << getFName(0) << std::endl;
     std::cout << "last name:    " << getLName(0) << std::endl;
     std::cout << "nickname:     " << getNName(0) << std::endl;

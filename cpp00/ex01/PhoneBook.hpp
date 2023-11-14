@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 #ifndef PHONEBOOK_HPP
 #define PHONEBOOK_HPP
@@ -19,5 +20,6 @@ public:
 };
 
 bool    check_number(std::string info);
+bool    check_name(std::string info);
 
 #endif
