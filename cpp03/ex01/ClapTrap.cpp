@@ -10,7 +10,15 @@ ClapTrap::~ClapTrap() {
 
 ClapTrap::ClapTrap(std::string name) : _hp(10), _nrg(10), _ad(0) {
 	_name = name;
-	std::cout << "ClapTrap named: " << _name << " was created" << std::endl;
+	std::cout << "ClapTrap named " << _name << " was created" << std::endl;
+}
+
+ClapTrap::ClapTrap(std::string name, unsigned int hp, unsigned int nrg, unsigned int ad) {
+	_name = name;
+	_hp = hp;
+	_nrg = nrg;
+	_ad = ad;
+	std::cout << "Custom ClapTrap named " << _name << " was created" << std::endl;
 }
 
 ClapTrap::ClapTrap(ClapTrap const &src) {

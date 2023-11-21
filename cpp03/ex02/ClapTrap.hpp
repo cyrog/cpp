@@ -4,7 +4,7 @@
 #include <iostream>
 
 class	ClapTrap {
-	private:
+	protected:
 		std::string		_name;
 		unsigned int	_hp;
 		unsigned int	_nrg;
@@ -12,8 +12,9 @@ class	ClapTrap {
 	public:
 		ClapTrap();
 		ClapTrap(std::string name);
-		~ClapTrap();
+		ClapTrap(std::string name, unsigned int hp, unsigned int nrg, unsigned int ad);
 		ClapTrap(ClapTrap const &src);
+		~ClapTrap();
 
 		ClapTrap	&operator=(ClapTrap const &rhs);
 
