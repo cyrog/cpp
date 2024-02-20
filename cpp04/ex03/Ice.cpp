@@ -4,7 +4,7 @@ Ice::Ice() : AMateria("ice") {
 	std::cout << "Ice default constructor called" << std::endl;
 }
 
-Ice::Ice(Ice const &src) : AMateria(src) {
+Ice::Ice(const Ice &src) : AMateria(src) {
 	std::cout << "Ice copy constructor called" << std::endl;
 }
 
@@ -12,11 +12,12 @@ Ice::~Ice() {
 	std::cout << "Ice default destructor called" << std::endl;
 }
 
-Ice	&Ice::operator=(Ice const &rhs) {
+Ice	&Ice::operator=(const Ice &rhs) {
 	if (&rhs == this)
 		return *this;
 	AMateria::operator=(rhs);
 	std::cout << "Ice operator= called" << std::endl;
+	return *this;
 }
 
 AMateria	*Ice::clone() const {

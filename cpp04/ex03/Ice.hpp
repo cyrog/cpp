@@ -6,10 +6,10 @@
 class	Ice : public AMateria {
 	public:
 		Ice();
-		Ice(Ice const &src);
+		Ice(const Ice &src);
 		~Ice();
 
-		Ice	&operator=(Ice const &rhs);
+		Ice	&operator=(const Ice &rhs);
 
 		AMateria	*clone() const;
 		void		use(ICharacter &target);
