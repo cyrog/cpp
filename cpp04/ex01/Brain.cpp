@@ -18,6 +18,8 @@ Brain::~Brain() {
 Brain &Brain::operator=(Brain const &rhs) {
 	std::cout << "brain assignment operator called" << std::endl;
 
+	if (this == &rhs)
+		return *this;
 	for (int i = -1; i < 100; ++i)
 		ideas[i] = rhs.ideas[i];
 	return *this;

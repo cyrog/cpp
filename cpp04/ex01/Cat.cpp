@@ -18,8 +18,11 @@ Cat::~Cat() {
 }
 
 Cat	&Cat::operator=(Cat const &rhs) {
-	type = rhs.type;
-	brain = new Brain(*rhs.brain);
+	if (this == &rhs)
+		return *this;
+	Animal::operator=(rhs);
+	delete this->brain;
+	this->brain = new Brain(*rhs.brain);
 
 	return *this;
 }

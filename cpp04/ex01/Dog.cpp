@@ -16,9 +16,11 @@ Dog::~Dog() {
 }
 
 Dog	&Dog::operator=(Dog const &rhs) {
-	type = rhs.type;
-	brain =  rhs.brain;
-
+	if (this == &rhs)
+		return *this;
+	Animal::operator=(rhs);
+	delete this->brain;
+	this->brain = new Brain(*rhs.brain);
 	return *this;
 }
 
