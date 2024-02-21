@@ -3,15 +3,15 @@
 
 #include "AMateria.hpp"
 
-class	Cure : public AMateria {
-	protected:
-		std::string type;
+class Cure : public AMateria {
 	public:
 		Cure();
-		Cure(Cure const &src);
+		Cure(const Cure &src);
 		~Cure();
 
-		Cure	&operator=(Cure const &rhs);
-		AMateria	*clone(void) const;
+		Cure		&operator=(const Cure &src);
+		AMateria	*clone() const;
+		void		use(ICharacter &target);
+};
 
 #endif

@@ -1,83 +1,97 @@
 #include "Character.hpp"
 
-Character::Character() : name("default name") {
-	std::cout << "default character constructor called" << std::endl;
-	for (i = 0; i < 4; i++) {
-		inventory[i] = nullptr;
-		floor[i] = nullptr;
+Character::Character() {
+	std::cout << "Character default constructor called" << std::endl;
+	for (int i = 0; i < 4; i++) {
+		this->_inventory[i] = nullptr;
+		this->_ground[i] = nullptr;
 	}
 }
 
-Character::Character(std::string name) {
-	std::cout << "string name character constructor called" << std::endl;
-	name = name;
-	for (i = 0; i < 4; i++) {
-		inventory[i] = nullptr;
-		floor[i] = nullptr;
+Character::Character(std::string name) : _name(name) {
+	std::cout << "Character name constructor called" << std::endl;
+	for (int i = 0; i < 4; i++) {
+		this->_inventory[i] = nullptr;
+		this->_ground[i] = nullptr;
 	}
 }
 
-Character::Character(Character const &src) {
-	std::cout << "character copy constructor called" << std::endl;
-	name = src.name;
-	for (i = 0; i < 4; i++) {
-		if (src.inventory[i])
-			inventory[i] = src.inventory[i]->clone();
+Character::Character(const Character &src) : _name(src._name) {
+	for (int i = 0; i < 4; i++) {
+		if (src._inventory[i])
+			this->_inventory[i] = src._inventory[i]->clone();
 		else
-			inventory[i] = nullptr;
-		if (src.floor[i])
-			floor[i] = src.floor[i]->clone();
-		else
-			floor[i] = nullptr;
+			this->_inventory[i] = nullptr;
 	}
+	std::cout << "Character copy constructor called" << std::endl;
 }
 
 Character::~Character() {
-	std::cout << "character destructor called" << std::endl;
-
-	for (i = 0; i < 4; i++) {
-		delete inventory[i];
-		delete floor[i];
+	std::cout << "Character destructor called" << std::endl;
+	for (int i = 0; i < 4; i++) {
+		delete this->_inventory[i];
+		delete this->_ground[i];
 	}
 }
 
-Character	&Character::operator=(Character const &rhs) {
-	std::cout << "character operator= called" << std::endl;
-	name = rhs.name;
-
-	for (i = 0; i < 4; i++) {
-		if (inventory[i]) {
-			delete inventory[i];
-			inventory[i] = nullptr;
-		}
-		if (floor[i]) {
-			delete floor[i];
-			floor[i] = nullptr;
-		}
-		if (rhs.inventory[i])
-			inventory[i] = rhs.inventory[i]->clone();
-		if (rhs.floor[i])
-			floor[i] = rhs.inventory[i]->clone();
+Character	&Character::operator=(const Character &src) {
+	if (&src == this)
+		return *this;
+	for (int i = 0; i < 4; i++) {
+		delete this->_inventory[i];
+		this->_inventory[i] = nullptr;
+	}
+	for (int i = 0; i < 4; i++) {
+		if (src._inventory[i])
+			this->_inventory[i] = src._inventory[i]->clone();
+		else
+			this->_inventory[i] = nullptr;
 	}
 	return *this;
 }
 
-std::string	&Character::getName() const {
-	return name;
+std::string const	&Character::getName() const {
+	return (this->_name);
 }
 
 void	Character::equip(AMateria *m) {
 	if (!m) {
-		std::cout << "invalid materia" << std::endl;
+		std::cout << "* this element is not known to the player *" << std::endl;
 		return ;
 	}
-	for (i = 0; i < 4; i++) {
-		if (!inventory[i]) {
-			inventory[i] = m;
-			std::cout << name << " equip " << m->getType() << " in slot: " << i << std::endl;
-			return ;
+	for (int i = 0; i < 4; i++) {
+		if(!_inventory[i]) {
+			_inventory[i] = m;
+			break;
 		}
 	}
-	std::cout << name << "was unable to equip " << m->getType() << ": inventoty is full" << std::endl;
-	return ;
+	std::cout << "* " << this->getName() << " equipped " << m->getType() << " *" << std::endl;
+}
+
+void	Character::unequip(int idx) {
+	if (idx < 4 && idx >= 0 && this->_inventory[idx]) {
+		for(int i = 0; i < 4; i++) {
+	if (!this->_ground[i]) {
+		this->_ground[i] = this->_inventory[idx];
+		this->_inventory[idx] = nullptr;
+		std::cout << "* " << this->getName() << " unequipped " << this->_ground[i]->getType() << " *" << std::endl;
+		return ;
+		}
+	}
+	delete this->_ground[0];
+	this->_ground[0] = this->_inventory[idx];
+	this->_inventory[idx]= nullptr;
+	std::cout << "* " << this->getName() << " unequipped " << this->_ground[0]->getType() << " *" << std::endl;
+	}
+	else
+		std::cout << "* there is no equipement in the " << idx << " inventory slot *" << std::endl;
+}
+
+void	Character::use(int idx, ICharacter &target) {
+	if (idx >= 0 && idx < 4) {
+		if (_inventory[idx] && _inventory[idx] != nullptr)
+_inventory[idx]->use(target);
+	else
+		std::cout << "* there is no equipement in the " << idx << " inventory slot *" << std::endl;
+	}
 }

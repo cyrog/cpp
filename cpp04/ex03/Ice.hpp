@@ -3,20 +3,15 @@
 
 #include "AMateria.hpp"
 
-class	Ice : public AMateria {
-	protected:
-		std::string	type;
-
+class Ice : public AMateria {
 	public:
 		Ice();
-		Ice(Ice const &src);
+		Ice(const Ice &src);
 		~Ice();
 
-		Ice	&operator=(Ice const &rhs);
-
-		AMateria	*clone(void) const;
-
-
+		Ice		&operator=(const Ice &src);
+		AMateria	*clone() const;
+		void		use(ICharacter &target);
 };
 
 #endif

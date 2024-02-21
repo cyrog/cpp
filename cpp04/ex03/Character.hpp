@@ -4,22 +4,23 @@
 #include "ICharacter.hpp"
 #include "AMateria.hpp"
 
-class	Character {
-	private:
-		std::string	name;
-		AMateria	*inventory[4];
-		AMateria	*floor[4];
+class Character : public ICharacter {
 
-	public:
+	std::string const	_name;
+	AMateria		*_inventory[4];
+	AMateria		*_ground[4];
+
+	public:	
 		Character();
 		Character(std::string name);
-		Character(Character const &src);
+		Character(const Character &src);
 		~Character();
 
-		Character &operator=(Character const &rhs);
-		std::string	&getName() const;
-		void	equip(AMateria *m);
-		void	unequip(AMateria *m);
+		Character	&operator=(const Character &src);
+		std::string const & getName() const;
+		void equip(AMateria* m);
+		void unequip(int idx);
+		void use(int idx, ICharacter& target);
 };
 
-#ifndef
+#endif

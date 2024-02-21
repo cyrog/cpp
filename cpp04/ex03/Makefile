@@ -1,9 +1,9 @@
 NAME 		= abstract
-SRCS 		= main.cpp AMateria.cpp
-OBJS 		= ${SRCS:.cpp=.o}
+SRCS 		= $(wildcard *.cpp) 
+OBJS 		= $(SRCS:.cpp=.o)
 CCXX		= @c++
 RM		= @rm -rf
-CXXFLAGS	= -Wall -Wextra -Werror -std=c++98
+CXXFLAGS	= -Wall -Wextra -Werror -std=c++11
 
 .cpp.o :
 	$(CCXX) -c $(CXXFLAGS) -o $@ $<
