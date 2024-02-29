@@ -9,12 +9,9 @@ class Cure : public AMateria {
 		Cure(const Cure &src);
 		~Cure();
 
-<<<<<<< HEAD
 		Cure &operator=(const Cure &rhs);
 
-=======
 		Cure		&operator=(const Cure &src);
->>>>>>> 8ab5e113abc0c817f5356f2f09ba6bc503b3e897
 		AMateria	*clone() const;
 		void		use(ICharacter &target);
 };
